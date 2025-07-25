@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a modern, full-stack web application built as a personal portfolio website for Muhammad Sohaib Jameel, a Senior Mobile Application Developer. The project showcases a React-based frontend with a Node.js/Express backend, featuring a dark-themed design with smooth animations and interactive elements.
+This is a modern, fully static portfolio website built for Muhammad Sohaib Jameel, a Senior Mobile Application Developer. The project is now converted to Next.js (App Router) with static export capabilities, featuring a dark-themed design with smooth animations and interactive elements. The site is deployable to any static hosting platform like Vercel, GitHub Pages, or Netlify.
 
 ## User Preferences
 
@@ -10,32 +10,32 @@ Preferred communication style: Simple, everyday language.
 
 ## System Architecture
 
-The application follows a modern full-stack architecture with clear separation between frontend and backend components:
+The application follows a modern static site architecture with Next.js:
 
 ### Frontend Architecture
-- **Framework**: React 18 with TypeScript
+- **Framework**: Next.js 15 with App Router and TypeScript
+- **Export Mode**: Static site generation with `output: 'export'`
 - **Styling**: Tailwind CSS with custom CSS variables for theming
-- **UI Components**: Radix UI primitives with shadcn/ui component library
-- **Routing**: Wouter for client-side routing
-- **State Management**: React Query (TanStack Query) for server state
-- **Build Tool**: Vite for fast development and optimized builds
+- **UI Components**: Custom React components with responsive design
+- **Images**: Next.js Image component with unoptimized setting for static export
+- **Build Tool**: Next.js built-in compiler and bundler
 
-### Backend Architecture
-- **Runtime**: Node.js with Express.js framework
-- **Language**: TypeScript with ES modules
-- **Development**: Hot reload with Vite integration in development mode
-- **Storage**: In-memory storage implementation with interface for future database integration
+### Static Architecture
+- **No Backend**: Fully static site with no server dependencies
+- **Assets**: All images, icons, and files served from public directory
+- **Deployment**: Ready for static hosting platforms (Vercel, GitHub Pages, Netlify)
+- **Development**: Next.js dev server with hot reload
 
 ## Key Components
 
 ### Frontend Components
-1. **Navigation**: Fixed header with smooth scroll navigation
-2. **Hero Section**: Animated typewriter effect and profile display
-3. **About Section**: Personal information and statistics
-4. **Skills Section**: Technology grid with icons and descriptions
-5. **Projects Section**: Portfolio showcase with external links
-6. **Experience Section**: Professional timeline with achievements
-7. **Contact Section**: Contact form with validation and toast notifications
+1. **Navigation**: Fixed header with smooth scroll navigation and active section tracking
+2. **Hero Section**: Animated typewriter effect with profile image and call-to-action buttons
+3. **About Section**: Personal information with achievement statistics and core expertise
+4. **Skills Section**: Horizontal scrolling technology showcase with custom Flutter/Fiverr icons
+5. **Projects Section**: Featured mobile apps with app store links and technology stacks
+6. **Experience Section**: Professional timeline with detailed achievements and technologies
+7. **Contact Section**: Contact information, social media links, and CV download functionality
 
 ### UI System
 - **Design System**: shadcn/ui components built on Radix UI primitives

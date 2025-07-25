@@ -1,0 +1,89 @@
+Convert my existing Replit project into a fully static portfolio website built with Next.js (App Router).
+
+Right now, my project includes backend code using Express and Vite, but I want to completely remove the backend and server logic.
+
+🔧 Steps to Perform:
+✅ Delete all backend-related files/folders:
+
+server/
+
+shared/
+
+vite.config.ts
+
+Any Express or Vite-related scripts in package.json
+
+Any tsx server runners
+
+✅ Update package.json scripts to only use Next.js:
+
+json
+Copy
+Edit
+"scripts": {
+  "dev": "next dev",
+  "build": "next build && next export",
+  "start": "next start"
+}
+✅ Uninstall unnecessary backend packages:
+
+Run the following in the terminal:
+
+bash
+Copy
+Edit
+npm uninstall express vite tsx @vitejs/plugin-react @replit/vite-plugin-runtime-error-modal @replit/vite-plugin-cartographer nanoid
+✅ Ensure project is structured like a proper static Next.js site:
+
+Uses the App Router (/app folder)
+
+Static files like images, resume PDF, etc. are inside /public
+
+Reusable components are in /components
+
+Tailwind is set up in /styles and tailwind.config.js
+
+✅ Update next.config.js to enable static export:
+
+js
+Copy
+Edit
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  images: {
+    unoptimized: true
+  }
+};
+
+module.exports = nextConfig;
+✅ Ensure Tailwind CSS and animation libraries are working:
+
+Tailwind CSS is configured and imported
+
+Anime.js, Framer Motion, and Three.js (or React Three Fiber) are installed
+
+Animations are working statically (no backend-triggered effects)
+
+✅ Ensure the site builds statically using:
+
+bash
+Copy
+Edit
+npm run build
+It should output to /out for static deployment.
+
+🎯 Goal:
+A completely static portfolio website using:
+
+Next.js (App Router)
+
+Tailwind CSS
+
+Anime.js (for text animations)
+
+Framer Motion (for page transitions)
+
+React Three Fiber or Three.js (for 3D hero background)
+
+The site should be fully exportable using next export and deployable on Vercel or GitHub Pages, with no reliance on any backend server or API.
