@@ -1,46 +1,36 @@
-import { useState, useEffect } from "react";
+'use client';
+
+import { useState, useEffect } from 'react';
 
 export default function Navigation() {
-  const [activeSection, setActiveSection] = useState("home");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const updateActiveNav = () => {
-      const sections = document.querySelectorAll('.section');
-      let current = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        if (sectionTop <= 100) {
-          current = section.getAttribute('id') || '';
-        }
-      });
-      
-      if (current) {
-        setActiveSection(current);
-      }
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', updateActiveNav);
-    return () => window.removeEventListener('scroll', updateActiveNav);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 glass-effect">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <div className="text-xl font-bold text-blue-400">
-            Sohaib Jameel
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-slate-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+    }`}>
+      <div className="max-w-6xl mx-auto px-4 py-4">
+        <div className="flex justify-between items-center">
+          <div className="text-xl font-bold text-white">
+            Muhammad Sohaib Jameel
           </div>
+          
           <div className="hidden md:flex space-x-8">
             {[
               { id: 'home', label: 'Home' },
@@ -49,21 +39,16 @@ export default function Navigation() {
               { id: 'projects', label: 'Projects' },
               { id: 'experience', label: 'Experience' },
               { id: 'contact', label: 'Contact' }
-            ].map(({ id, label }) => (
+            ].map((item) => (
               <button
-                key={id}
-                onClick={() => scrollToSection(id)}
-                className={`nav-link relative transition-colors duration-300 hover:text-blue-400 ${
-                  activeSection === id ? 'active' : ''
-                }`}
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-slate-300 hover:text-white transition-colors duration-200 hover:scale-105 transform"
               >
-                {label}
+                {item.label}
               </button>
             ))}
           </div>
-          <button className="md:hidden text-white">
-            <i className="fas fa-bars"></i>
-          </button>
         </div>
       </div>
     </nav>
